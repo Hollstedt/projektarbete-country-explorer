@@ -4,10 +4,18 @@ export default function Countries() {
 
     const regions = ["Europe", "Asia", "Oceania", "Americas", "Africa"];
     const [selectedRegion, setSelectedRegion] = useState("");
+    const [countries, setCountries] = useState([]);
 
-    const handleRegionPick = (event) => {
+    const handleRegionPick = async (event) => {
         const region = event.target.value;
         setSelectedRegion(region);
+
+        if (region) {
+            const response = await fetch(`https://restcountries.com/v3.1/region/${region}`);
+            const data = await response.json();
+            setCountries(data);
+            console.log("Du har fetchat landet: ", data)
+        }
     }
 
 
@@ -18,11 +26,11 @@ export default function Countries() {
             <select onChange={handleRegionPick}>
                 <option value="">Världsdel</option>
                 {regions.map((region, index) => (
-                    <option key={index}>{region}</option>
+                    <option key={index} value={region}>{region}</option>
                 ))}
             </select>
 
-            {selectedRegion && <p>{selectedRegion}</p>}
+            {selectedRegion && console.log(selectedRegion)}
             
         </div>
     )
