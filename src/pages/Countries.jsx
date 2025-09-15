@@ -1,10 +1,12 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom";
 
 export default function Countries() {
 
     const regions = ["Europe", "Asia", "Oceania", "Americas", "Africa"];
     const [selectedRegion, setSelectedRegion] = useState("");
     const [countries, setCountries] = useState([]);
+    const navigate = useNavigate();
 
     const handleRegionPick = async (event) => {
         const region = event.target.value;
@@ -16,6 +18,11 @@ export default function Countries() {
             setCountries(data);
             console.log("Du har fetchat landet: ", data)
         }
+    }
+
+    const handleCountryPicker = (countryName) => {
+        console.log("Klickade på: ", countryName)
+        navigate(`/countries/${countryName}`)
     }
 
 
@@ -30,8 +37,14 @@ export default function Countries() {
                 ))}
             </select>
 
-            {selectedRegion && console.log(selectedRegion)}
-            
+            <div>
+                {countries.map(country => (
+                    <div key={country.name.common} onClick={() => handleCountryPicker(country.name.common)}>
+                        <img src={country.flags.svg} alt={`Flag of ${country.name.common}`} width="150" />
+                        <p>{country.name.common}</p>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }

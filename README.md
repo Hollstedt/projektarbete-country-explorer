@@ -12,7 +12,8 @@
 
 
 ### Arbetsflöde :computer:
-1. Sätter upp mappstruktur - lägger in mappar för context, pages och components. Installerar dependencies (react-router-dom v6.3).
-2. Skapar setup för routing (BrowserRouter, Routes/Route). Skapar link mellan "/Startpage", "/Countries" och "/Collection".
-3. Skapar en select-dropdown där jag map()ar ut värdet från variabel med en array som består av regioner/världsdelar.
-4. Skapar funktion för Region pick-handler som sätter selectedRegion till det valda regionen. En console.log() för vald region (selectedRegion) när selectedRegion är true i dropdown.
+* Sätter upp mappstruktur - lägger in mappar för context, pages och components. Installerar dependencies (react-router-dom v6.3).
+* Skapar setup för routing (BrowserRouter, Routes/Route). Skapar link mellan "/Startpage", "/Countries" och "/Collection".
+* Skapar en select-dropdown där jag map()ar ut värdet från variabel med en array som består av regioner/världsdelar.
+* Skapar funktion för Region pick-handler som sätter selectedRegion till det valda regionen. En console.log() för vald region (selectedRegion) när selectedRegion är true i dropdown.
+* Sätter upp en funktion som sätter countries till data som fetchas från restcountries.com/api[...]. Renderar ut flaggan för landet (name.common) och landets namn både som p-tag och som alt (Flagga för 'valt land') till img-elementet.
