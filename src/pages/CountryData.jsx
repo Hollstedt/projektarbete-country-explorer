@@ -1,7 +1,7 @@
 export default function CountryData() {
     return (
         <div>
-            <h1>Country data</h1>
+            <h1>Country data-page</h1>
         </div>
     )
 }
