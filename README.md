@@ -17,3 +17,5 @@
 * Skapar en select-dropdown där jag map()ar ut värdet från variabel med en array som består av regioner/världsdelar.
 * Skapar funktion för Region pick-handler som sätter selectedRegion till det valda regionen. En console.log() för vald region (selectedRegion) när selectedRegion är true i dropdown.
 * Sätter upp en funktion som sätter countries till data som fetchas från restcountries.com/api[...]. Renderar ut flaggan för landet (name.common) och landets namn både som p-tag och som alt (Flagga för 'valt land') till img-elementet.
+* Setup för Context och global state-hantering.
+* Sätter upp Link från /Countries till detaljerad sida (/CountryData) med hjälp av useParams().

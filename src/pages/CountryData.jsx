@@ -20,6 +20,9 @@ export default function CountryData() {
             <h1>Country data-page</h1>
             <h2>{selectedCountry.name.common}</h2>
             <img src={selectedCountry.flags.svg} alt="" width="250"/>
+            <br />
+            <button onClick={() => console.log("Sparar landet", selectedCountry.name.common, "i Collection")}>Spara land i Collection</button>
+            {/* YOU ARE HERE, kör på med CountryDataContext */}
         </div>
     )
 }
