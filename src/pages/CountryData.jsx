@@ -5,7 +5,8 @@ import { CountryDataContext } from "../context/CountryDataContext";
 export default function CountryData() {
 
     const {countryName} = useParams();
-    const {selectedCountry, fetchCountryName} = useContext(CountryDataContext);
+    const {selectedCountry, fetchCountryName, saveCountry} = useContext(CountryDataContext);
+
     
     useEffect(() => {
         fetchCountryName(countryName);
@@ -21,8 +22,7 @@ export default function CountryData() {
             <h2>{selectedCountry.name.common}</h2>
             <img src={selectedCountry.flags.svg} alt="" width="250"/>
             <br />
-            <button onClick={() => console.log("Sparar landet", selectedCountry.name.common, "i Collection")}>Spara land i Collection</button>
-            {/* YOU ARE HERE, kör på med CountryDataContext */}
+            <button onClick={() => saveCountry(selectedCountry)}>Spara land i Collection</button>
         </div>
     )
 }
