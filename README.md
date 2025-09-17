@@ -21,3 +21,4 @@
 * Setup för Context och global state-hantering.
 * Sätter upp Link från /Countries till detaljerad sida (/CountryData) med hjälp av useParams().
 * Kopplar saveCountry till localStorage som sparar landet i localStorage. . När jag lägger till i localStorage använder jag .find() för att först kolla så att landet inte redan finns i LS och då riskerar skapa dublett.
+* 
