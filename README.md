@@ -16,6 +16,8 @@
 * Skapar setup för routing (BrowserRouter, Routes/Route). Skapar link mellan "/Startpage", "/Countries" och "/Collection".
 * Skapar en select-dropdown där jag map()ar ut värdet från variabel med en array som består av regioner/världsdelar.
 * Skapar funktion för Region pick-handler som sätter selectedRegion till det valda regionen. En console.log() för vald region (selectedRegion) när selectedRegion är true i dropdown.
-* Sätter upp en funktion som sätter countries till data som fetchas från restcountries.com/api[...]. Renderar ut flaggan för landet (name.common) och landets namn både som p-tag och som alt (Flagga för 'valt land') till img-elementet.
+* Skapar handleRegionPick() som fetchar alla länder från vald region (https://restcountries.com/v3.1/region/...). Renderar ut flaggan och namnet för landet med map().
+* Vid klick på flagga navigeras(useNavigate) jag till detaljerad information om landet (/countries/ "landets namn/:countryName" ).
 * Setup för Context och global state-hantering.
 * Sätter upp Link från /Countries till detaljerad sida (/CountryData) med hjälp av useParams().
+* Kopplar saveCountry till localStorage som sparar landet i localStorage. . När jag lägger till i localStorage använder jag .find() för att först kolla så att landet inte redan finns i LS och då riskerar skapa dublett.
