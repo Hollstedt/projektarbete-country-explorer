@@ -21,6 +21,10 @@ export default function CountryData() {
             <h1>Country data-page</h1>
             <h2>{selectedCountry.name.common}</h2>
             <img src={selectedCountry.flags.svg} alt="" width="250"/>
+            <p><strong>Befolkning: </strong>{selectedCountry.population}</p>
+            <p><strong>Valuta: </strong>{Object.values(selectedCountry.currencies).map(currency => currency.name).join(", ")}</p>
+            <a href={selectedCountry.maps.googleMaps} target="_blank">Visa i Google Maps</a>
+            <br />
             <br />
             <button onClick={() => saveCountry(selectedCountry)}>Spara land i Collection</button>
         </div>
