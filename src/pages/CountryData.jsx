@@ -9,7 +9,7 @@ export default function CountryData() {
     
     useEffect(() => {
         fetchCountryName(countryName);
-    }, [countryName]);
+    }, [countryName, fetchCountryName]);
     
     if (!selectedCountry) {
         return null;
