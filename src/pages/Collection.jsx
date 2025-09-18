@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { CountryDataContext } from "../context/CountryDataContext"
 import { useNavigate } from "react-router-dom";
+import HandleCountryFlag from "../components/HandleCountryFlag";
 
 export default function Collection() {
 
@@ -27,10 +28,7 @@ export default function Collection() {
             <h2>Sparade länder</h2>
             <div>
                 {savedCountries.map(country => (
-                    <div key={country.name.common} onClick={() => handleCountryMoreInfo(country.name.common)}>
-                        <img src={country.flags.svg} width="250" alt={`Flag of ${country.name.common}`} />
-                        <p>{country.name.common}</p>
-                    </div>
+                    <HandleCountryFlag key={country.name.common} country={country} onClick={() => handleCountryMoreInfo(country.name.common)}/>
                 ))}
             </div>
         </div>
