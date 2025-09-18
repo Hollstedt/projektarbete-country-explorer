@@ -5,7 +5,7 @@ import { CountryDataContext } from "../context/CountryDataContext";
 export default function CountryData() {
 
     const {countryName} = useParams();
-    const {selectedCountry, fetchCountryName, saveCountry, savedCountries} = useContext(CountryDataContext);
+    const {selectedCountry, fetchCountryName, saveCountry, savedCountries, removeCountryFromCollection} = useContext(CountryDataContext);
     
     useEffect(() => {
         fetchCountryName(countryName);
@@ -25,7 +25,9 @@ export default function CountryData() {
             <p><strong>Befolkning: </strong>{selectedCountry.population}</p>
             <p><strong>Valuta: </strong>{Object.values(selectedCountry.currencies).map(currency => currency.name).join(", ")}</p>
             <a href={selectedCountry.maps.googleMaps} target="_blank">Visa i Google Maps</a>
-            <button disabled={isCountryAlreadyInCollection} onClick={() => saveCountry(selectedCountry)}>{isCountryAlreadyInCollection ? "Landet finns redan i Country Collection" : "Spara land i Country Collection"}</button>
+            <button onClick={isCountryAlreadyInCollection ? () => removeCountryFromCollection(selectedCountry) : () => saveCountry(selectedCountry)}>
+                {isCountryAlreadyInCollection ? "Ta bort land från collection" : "Spara land i collection"}
+            </button>
         </div>
     )
 }

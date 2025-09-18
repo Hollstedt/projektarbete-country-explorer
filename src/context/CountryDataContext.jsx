@@ -32,8 +32,14 @@ export const CountryDataProvider = ({ children }) => {
         }
     }
 
+    const removeCountryFromCollection = (country) => {
+        const newSavedCountries = savedCountries.filter(savedCountry => savedCountry.name.common !== country.name.common);
+        setSavedCountries(newSavedCountries);
+        localStorage.setItem("savedCountries", JSON.stringify(newSavedCountries));
+    }
+
     return (
-        <CountryDataContext.Provider value={{ selectedCountry, fetchCountryName, savedCountries, saveCountry }}>
+        <CountryDataContext.Provider value={{ selectedCountry, fetchCountryName, savedCountries, saveCountry, removeCountryFromCollection }}>
             {children}
         </CountryDataContext.Provider>
     )
