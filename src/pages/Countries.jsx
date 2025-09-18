@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import HandleCountryFlag from "../components/HandleCountryFlag";
 
 export default function Countries() {
 
@@ -39,10 +40,7 @@ export default function Countries() {
 
             <div>
                 {countries.map(country => (
-                    <div key={country.name.common} onClick={() => handleCountryPicker(country.name.common)}>
-                        <img src={country.flags.svg} alt={`Flag of ${country.name.common}`} width="150" />
-                        <p>{country.name.common}</p>
-                    </div>
+                    <HandleCountryFlag key={country.name.common} country={country} onClick={() => handleCountryPicker(country.name.common)}/>
                 ))}
             </div>
         </div>
