@@ -1,20 +1,21 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { CountryDataContext } from "../context/CountryDataContext";
 
 export default function CountryData() {
 
     const {countryName} = useParams();
-    const {selectedCountry, fetchCountryName, saveCountry} = useContext(CountryDataContext);
-
+    const {selectedCountry, fetchCountryName, saveCountry, savedCountries} = useContext(CountryDataContext);
     
     useEffect(() => {
         fetchCountryName(countryName);
     }, [countryName]);
-
+    
     if (!selectedCountry) {
         return null;
     }
+
+    const isCountryAlreadyInCollection = Boolean(savedCountries.find(savedCountry => savedCountry.name.common === selectedCountry.name.common));
 
     return (
         <div>
@@ -24,9 +25,7 @@ export default function CountryData() {
             <p><strong>Befolkning: </strong>{selectedCountry.population}</p>
             <p><strong>Valuta: </strong>{Object.values(selectedCountry.currencies).map(currency => currency.name).join(", ")}</p>
             <a href={selectedCountry.maps.googleMaps} target="_blank">Visa i Google Maps</a>
-            <br />
-            <br />
-            <button onClick={() => saveCountry(selectedCountry)}>Spara land i Collection</button>
+            <button disabled={isCountryAlreadyInCollection} onClick={() => saveCountry(selectedCountry)}>{isCountryAlreadyInCollection ? "Landet finns redan i Country Collection" : "Spara land i Country Collection"}</button>
         </div>
     )
 }
