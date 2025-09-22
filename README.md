@@ -25,3 +25,5 @@
 * När ett land sparas till "isCountryAlreadyInCollection" använder jag .find() för att kolla att landet redan finns i arrayen savedCountries och om det gör det så får jag tillbaka true, annars false som sedan används i conditional rendering för knappen "Spara land i collection".
 * removeCountryFromCollection() använder .filter() för att ta bort länder från arrayen savedCountries och då också från localStorage. Knappen togglas mellan saveCountry och removeCountryFromCollection beroende på om landet redan är sparat i arrayen eller ej, och skickar vid behov en uppdaterad array till localStorage.
 * Bryter ut data från countryData till ny komponent CountryInfo. Renderar just nu ut data i CountryInfo.
+* Lägger till knappar för Quiz och Leaderboard för Quiz på Startpage.jsx med hjälp av Link och lägger routes i App.jsx för respektive page.
+* Bryter ut data från Countries till ny komponent (RegionSelector) då samma kommer användas under page:"Countries" samt page:"Quiz".

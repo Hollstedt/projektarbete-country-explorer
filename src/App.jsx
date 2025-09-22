@@ -4,6 +4,8 @@ import Startpage from './pages/Startpage'
 import Countries from './pages/Countries'
 import Collection from './pages/Collection'
 import CountryData from './pages/CountryData'
+import Quiz from './pages/Quiz'
+import QuizLeaderboard from './pages/QuizLeaderboard'
 
 function App() {
 
@@ -13,6 +15,8 @@ function App() {
       <Route path="/countries" element={<Countries />}></Route>
       <Route path="/collection" element={<Collection />}></Route>
       <Route path="/countries/:countryName" element={<CountryData />}></Route>
+      <Route path="/quiz" element={<Quiz />}></Route>
+      <Route path="/quizleaderboard" element={<QuizLeaderboard />}></Route>
     </Routes>
   )
 }

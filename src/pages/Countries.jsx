@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import HandleCountryFlag from "../components/HandleCountryFlag";
+import RegionSelector from "../components/RegionSelector";
 
 export default function Countries() {
 
-    const regions = ["Europe", "Asia", "Oceania", "Americas", "Africa"];
     const [selectedRegion, setSelectedRegion] = useState("");
     const [countries, setCountries] = useState([]);
     const navigate = useNavigate();
@@ -26,18 +26,10 @@ export default function Countries() {
         navigate(`/countries/${countryName}`)
     }
 
-
     return (
         <div>
             <h1>Study Countries-page</h1>
-            <label>Välj världsdel: </label>
-            <select onChange={handleRegionPick}>
-                <option value="">Världsdel</option>
-                {regions.map((region, index) => (
-                    <option key={index} value={region}>{region}</option>
-                ))}
-            </select>
-
+            <RegionSelector selectedRegion={selectedRegion} onRegionChange={handleRegionPick} />
             <div>
                 {countries.map(country => (
                     <HandleCountryFlag key={country.name.common} country={country} onClick={() => handleCountryPicker(country.name.common)}/>
