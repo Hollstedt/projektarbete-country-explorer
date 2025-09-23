@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 
-
 export const CountryDataContext = createContext();
 
 export const CountryDataProvider = ({ children }) => {
@@ -22,6 +21,12 @@ export const CountryDataProvider = ({ children }) => {
         setSelectedCountry(data[0])
     }
 
+    const fetchRegion = async (region) => {
+        const response = await fetch(`https://restcountries.com/v3.1/region/${region}`);
+        const data = await response.json();
+        return data;
+    }
+
     const saveCountry = (country) => {
         const savedCountryExists = savedCountries.find(savedCountry => savedCountry.name.common === country.name.common);
 
@@ -39,7 +44,7 @@ export const CountryDataProvider = ({ children }) => {
     }
 
     return (
-        <CountryDataContext.Provider value={{ selectedCountry, fetchCountryName, savedCountries, saveCountry, removeCountryFromCollection }}>
+        <CountryDataContext.Provider value={{ selectedCountry, fetchCountryName, savedCountries, saveCountry, removeCountryFromCollection, fetchRegion }}>
             {children}
         </CountryDataContext.Provider>
     )
