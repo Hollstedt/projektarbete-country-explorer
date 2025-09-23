@@ -27,3 +27,5 @@
 * Bryter ut data från countryData till ny komponent CountryInfo. Renderar just nu ut data i CountryInfo.
 * Lägger till knappar för Quiz och Leaderboard för Quiz på Startpage.jsx med hjälp av Link och lägger routes i App.jsx för respektive page.
 * Bryter ut data från Countries till ny komponent (RegionSelector) då samma kommer användas under page:"Countries" samt page:"Quiz".
+* Implementerar RegionSelector-komponenten (skapad från tidigare) på Quiz-page där handleRegionChange() körs och vid onChange blir selectedRegion satt via setSelectedRegion.
+* Skapar handeQuizStart som kollar om användaren angett namn (playersName) samt valt världsdel (selectedRegion). Om båda uppfylls (true) så skall quizen starta, annars får man alert om att ange namn/ välja världsdel. handleQuizStart körs onClick på knapp.
