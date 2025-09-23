@@ -22,7 +22,6 @@ export default function Countries() {
     }
 
     const handleCountryPicker = (countryName) => {
-        console.log("Klickade på: ", countryName)
         navigate(`/countries/${countryName}`)
     }
 

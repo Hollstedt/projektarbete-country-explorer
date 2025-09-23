@@ -1,4 +1,5 @@
 export default function RegionSelector( {selectedRegion, onRegionChange} ) {
+    
     const regions = ["Europe", "Asia", "Oceania", "Americas", "Africa"];
 
     return (
