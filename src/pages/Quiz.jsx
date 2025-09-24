@@ -15,6 +15,9 @@ export default function Quiz() {
    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
    const [userAnswer, setUserAnswer] = useState("");
 
+   const currentCountryForQuiz = randomizedQuizCountries[currentQuestionIndex];
+
+
 
    const handleRegionChange = (event) => {
       setSelectedRegion(event.target.value)
@@ -36,8 +39,22 @@ export default function Quiz() {
       }
    }
 
+   const handleUserAnswer = () => {
+      const correctAnswer = currentCountryForQuiz.name.common.toLowerCase();
+      const userInputAnswer = userAnswer.toLowerCase().trim();
+
+      const isCorrect = correctAnswer === userInputAnswer;
+
+      if (isCorrect) {
+         setScore(score + 1)
+         alert(`Rätt svar. Score: ${score + 1}`)
+      } else {
+         alert(`Fel svar. Rätt svar: ${currentCountryForQuiz.name.common}`)
+      }
+
+   }
+
    if (isQuizStarted) {
-      const currentCountryForQuiz = randomizedQuizCountries[currentQuestionIndex];
 
       return (
          <div>
@@ -47,24 +64,26 @@ export default function Quiz() {
             <p>Poäng: {score}</p>
 
             <div>
-               <img src={currentCountryForQuiz.flags.svg} alt="Flagga av landet xx" width="200" />
+               <img src={currentCountryForQuiz.flags.svg} alt={`Flag of ${currentCountryForQuiz.name.common}`} width="200" />
                <p>Vilket land är det här?</p>
                <input type="text" value={userAnswer} onChange={(event) => setUserAnswer(event.target.value)} placeholder="Ditt svar här..." />
-               <button onClick={() => console.log("Användaren svarade:", userAnswer)}>Svara</button>
+               <button onClick={handleUserAnswer}>Svara</button>
             </div>
          </div>
       )
-   }
 
-   return (
-      <div>
-         <h1>Quiz-page</h1>
+   } else {
+
+      return (
          <div>
-            <label>Ditt namn:</label>
-            <input type="text" value={playersName} onChange={(event) => setPlayersName(event.target.value)} placeholder="Ange ditt namn..."/>
+            <h1>Quiz-page</h1>
+            <div>
+               <label>Ditt namn:</label>
+               <input type="text" value={playersName} onChange={(event) => setPlayersName(event.target.value)} placeholder="Ange ditt namn..."/>
+            </div>
+            <RegionSelector selectedRegion={selectedRegion} onRegionChange={handleRegionChange}></RegionSelector>
+            <button onClick={handleQuizStart}>Starta quiz</button>
          </div>
-         <RegionSelector selectedRegion={selectedRegion} onRegionChange={handleRegionChange}></RegionSelector>
-         <button onClick={handleQuizStart}>Starta quiz</button>
-      </div>
-   )
+      )
+   }
 }
