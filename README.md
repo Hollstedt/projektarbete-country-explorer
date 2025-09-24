@@ -34,3 +34,5 @@
 * Skapar handler för att normalisera både korrekta svaret på flaggans namn från API (genom toLowerCase) och likadant med svaret från användaren. Tar också bort mellanslag i början/slutet på användarens svar för att minimera risken för felslag.
 * Fortsätter utöka handleUserAnswer med if-sats för att med hjälp av currentQuestionIndex kolla antalet frågor som renderats. Tömmer text input från tidigare inmatad data. Skapar ett objekt med användarens inmatade namn, valda regionen för quizet från select och antal rätt svar. Sedan hämtar jag resultat från localStorage, och finns inget där redan så skapas en tom array.
 * Jag grupperar resultaten i ett objekt, per region. Finns inte gruppen för specifika regionen så skapas den och en tom array och sedan pushas objektet från (result) in.
+* Sorterar resultat per region i fallande ordning och använder slice för att skapa en ny array med de tre toppresultaterna per region.
+* Renderar resultatet i QuizLeaderboard. Om inga resultat finns i localStorage så renderas det en "inga resultat"-text. Annars renderas det en text som visar antalet resultat per region och med användarens namn.
