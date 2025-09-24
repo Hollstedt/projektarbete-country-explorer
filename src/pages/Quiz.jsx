@@ -52,10 +52,26 @@ export default function Quiz() {
          alert(`Fel svar. Rätt svar: ${currentCountryForQuiz.name.common}`)
       }
 
+      if (currentQuestionIndex < 14) {
+         setCurrentQuestionIndex(currentQuestionIndex + 1)
+         setUserAnswer("");
+      } else {
+         const userFinalScore = score + (isCorrect ? 1 : 0);
+         alert(`Quiz över. Dina poäng är: ${userFinalScore} av 15`)
+
+         const usersFinalQuizResult = {
+            userName: playersName,
+            region: selectedRegion,
+            score: userFinalScore
+         };
+
+         const resultsInLocalStorage = JSON.parse(localStorage.getItem("resultsFromQuiz") || "[]");
+         resultsInLocalStorage.push(usersFinalQuizResult);
+         localStorage.setItem("resultsFromQuiz", JSON.stringify(resultsInLocalStorage));
+      }
    }
 
    if (isQuizStarted) {
-
       return (
          <div>
             <h1>Quiz startat för {playersName}</h1>
@@ -71,9 +87,7 @@ export default function Quiz() {
             </div>
          </div>
       )
-
    } else {
-
       return (
          <div>
             <h1>Quiz-page</h1>
