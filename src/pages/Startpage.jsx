@@ -2,8 +2,8 @@ import { Link } from "react-router-dom"
 
 export default function Startpage() {
     return (
-        <div>
-            <h1>Startpage</h1>
+        <div className="startpage-container">
+            <h1>COUNTRY EXPLORER QUIZ</h1>
             <div className="startpage-button-container">
                 <div className="startpage-button-upper-container">
                     <Link to="/countries"><button>Studera länder</button></Link>

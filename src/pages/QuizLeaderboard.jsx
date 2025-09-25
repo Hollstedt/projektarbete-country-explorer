@@ -27,12 +27,12 @@ export default function QuizLeaderboard() {
 
     return (
         <div>
-            <h1>Leaderboard for quiz</h1>
+            <h1>Quiz - Topp 3 per världsdel</h1>
 
             {!localStorageHasResults && <p className="p-noResult">Inga resultat ännu. Gör ett quiz först!</p>}
 
             {localStorageHasResults && (
-                <div>
+                <div className="quizresult-container">
                     {Object.keys(resultForEachRegion).map(region => (
                         <div key={region} className="region-result">
                             <h2>{region}</h2>

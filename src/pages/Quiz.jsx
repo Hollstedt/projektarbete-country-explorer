@@ -75,7 +75,7 @@ export default function Quiz() {
 
    if (isQuizStarted) {
       return (
-         <div>
+         <div className="quiz-container">
             <h1>Quiz startat för {playersName}</h1>
             <p>Fråga nummer {currentQuestionIndex + 1} av 15</p>
             <p>Poäng: {score}</p>
