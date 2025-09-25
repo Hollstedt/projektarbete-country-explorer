@@ -19,7 +19,7 @@ export default function CountryData() {
     const isCountryAlreadyInCollection = Boolean(savedCountries.find(savedCountry => savedCountry.name.common === selectedCountry.name.common));
 
     return (
-        <div>
+        <div className="countryinfo-container">
             <h1>Information om {selectedCountry.translations?.swe?.common}</h1>
             <div className="country-card">
                 <h2>{selectedCountry.translations?.swe?.common}</h2>
