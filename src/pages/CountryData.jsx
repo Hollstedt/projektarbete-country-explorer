@@ -20,9 +20,11 @@ export default function CountryData() {
 
     return (
         <div>
-            <h1>Country data-page</h1>
-            <h2>{selectedCountry.name.common}</h2>
-            <img src={selectedCountry.flags.svg} alt="" width="250"/>
+            <h1>Information om {selectedCountry.translations?.swe?.common}</h1>
+            <div className="country-card">
+                <h2>{selectedCountry.translations?.swe?.common}</h2>
+                <img src={selectedCountry.flags.svg} alt="" className="flag-image"/>
+            </div>
             <CountryInfo country={selectedCountry}/>
             <button onClick={isCountryAlreadyInCollection ? () => removeCountryFromCollection(selectedCountry) : () => saveCountry(selectedCountry)}>
                 {isCountryAlreadyInCollection ? "Ta bort land från collection" : "Spara land i collection"}

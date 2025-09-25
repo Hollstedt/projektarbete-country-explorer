@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import RegionSelector from "../components/RegionSelector"
 import { CountryDataContext } from "../context/CountryDataContext";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Quiz() {
@@ -17,7 +18,7 @@ export default function Quiz() {
 
    const currentCountryForQuiz = randomizedQuizCountries[currentQuestionIndex];
 
-
+   const navigate = useNavigate();
 
    const handleRegionChange = (event) => {
       setSelectedRegion(event.target.value)
@@ -29,9 +30,6 @@ export default function Quiz() {
          const randomCountries = countries.sort(() => 0.5 - Math.random());
          const selectedRandomCountries = randomCountries.slice(0, 15);
 
-         console.log("Länder hämtade från API:", countries.length);
-         console.log("Array med random hämtade länder:", selectedRandomCountries, "och det är totalt", selectedRandomCountries.length, "st.")
-
          setRandomizedQuizCountries(selectedRandomCountries)
          setIsQuizStarted(true)
       } else {
@@ -40,16 +38,16 @@ export default function Quiz() {
    }
 
    const handleUserAnswer = () => {
-      const correctAnswer = currentCountryForQuiz.name.common.toLowerCase();
+      const correctAnswer = currentCountryForQuiz.translations?.swe?.common.toLowerCase();
       const userInputAnswer = userAnswer.toLowerCase().trim();
 
       const isCorrect = correctAnswer === userInputAnswer;
 
       if (isCorrect) {
          setScore(score + 1)
-         alert(`Rätt svar. Score: ${score + 1}`)
+         alert(`Rätt svar. Du har nu ${score + 1} poäng!`)
       } else {
-         alert(`Fel svar. Rätt svar: ${currentCountryForQuiz.name.common}`)
+         alert(`Fel svar. Rätt svar var ${currentCountryForQuiz.translations?.swe?.common}.`)
       }
 
       if (currentQuestionIndex < 14) {
@@ -68,6 +66,10 @@ export default function Quiz() {
          const resultsInLocalStorage = JSON.parse(localStorage.getItem("resultsFromQuiz") || "[]");
          resultsInLocalStorage.push(usersFinalQuizResult);
          localStorage.setItem("resultsFromQuiz", JSON.stringify(resultsInLocalStorage));
+
+         setTimeout(() => {
+            navigate('/quizleaderboard');
+         }, 500)
       }
    }
 
@@ -75,12 +77,13 @@ export default function Quiz() {
       return (
          <div>
             <h1>Quiz startat för {playersName}</h1>
-            <h2>Vald världsdel: {selectedRegion}</h2>
-            <p>Fråga {currentQuestionIndex + 1} av 15</p>
+            <p>Fråga nummer {currentQuestionIndex + 1} av 15</p>
             <p>Poäng: {score}</p>
 
-            <div>
-               <img src={currentCountryForQuiz.flags.svg} alt={`Flag of ${currentCountryForQuiz.name.common}`} width="200" />
+            <div className="quiz-page-container">
+               <div className="country-card">
+                  <img src={currentCountryForQuiz.flags.svg} alt={`Flag of ${currentCountryForQuiz.name.common}`} width="200" />
+               </div>
                <p>Vilket land är det här?</p>
                <input type="text" value={userAnswer} onChange={(event) => setUserAnswer(event.target.value)} placeholder="Ditt svar här..." />
                <button onClick={handleUserAnswer}>Svara</button>

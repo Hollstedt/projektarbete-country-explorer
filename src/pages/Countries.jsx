@@ -17,7 +17,6 @@ export default function Countries() {
             const response = await fetch(`https://restcountries.com/v3.1/region/${region}`);
             const data = await response.json();
             setCountries(data);
-            console.log("Du har fetchat landet: ", data)
         }
     }
 
@@ -27,11 +26,11 @@ export default function Countries() {
 
     return (
         <div>
-            <h1>Study Countries-page</h1>
+            <h1>VÄRLDENS LÄNDER</h1>
             <RegionSelector selectedRegion={selectedRegion} onRegionChange={handleRegionPick} />
-            <div>
+            <div className="countries-grid">
                 {countries.map(country => (
-                    <HandleCountryFlag key={country.name.common} country={country} onClick={() => handleCountryPicker(country.name.common)}/>
+                    <HandleCountryFlag key={country.name.common} country={country} onClick={() => handleCountryPicker(country.name.common)} className="country-card"/>
                 ))}
             </div>
         </div>

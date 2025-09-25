@@ -27,23 +27,24 @@ export default function QuizLeaderboard() {
 
     return (
         <div>
-            <h1>Quiz Leaderboard-page</h1>
-            <h2>Leaderboard</h2>
+            <h1>Leaderboard for quiz</h1>
 
-            {!localStorageHasResults && <p>Inga resultat ännu. Gör ett quiz först!</p>}
+            {!localStorageHasResults && <p className="p-noResult">Inga resultat ännu. Gör ett quiz först!</p>}
 
             {localStorageHasResults && (
                 <div>
                     {Object.keys(resultForEachRegion).map(region => (
-                        <div key={region}>
+                        <div key={region} className="region-result">
                             <h2>{region}</h2>
-                            <ul>
-                                {resultForEachRegion[region].map((result, index) => (
-                                    <li key={index}>
-                                        {result.userName}: {result.score} av 15 poäng.
-                                    </li>
-                                ))}
-                            </ul>
+                            <div className="name-and-score">
+                                <ol>
+                                    {resultForEachRegion[region].map((result, index) => (
+                                        <li key={index}>
+                                            <p><strong>{result.userName}:</strong> {result.score} av 15 poäng.</p>
+                                        </li>
+                                    ))}
+                                </ol>
+                            </div>
                         </div>
                     ))}
                 </div>

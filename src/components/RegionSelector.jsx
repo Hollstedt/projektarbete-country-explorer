@@ -1,6 +1,12 @@
 export default function RegionSelector( {selectedRegion, onRegionChange} ) {
     
-    const regions = ["Europe", "Asia", "Oceania", "Americas", "Africa"];
+    const regions = [
+        { swedish: "Europa", english: "Europe" },
+        { swedish: "Asien", english: "Asia" },
+        { swedish: "Oceanien", english: "Oceania" },
+        { swedish: "Amerika", english: "Americas" },
+        { swedish: "Afrika", english: "Africa" }
+    ];
 
     return (
         <div>
@@ -8,7 +14,7 @@ export default function RegionSelector( {selectedRegion, onRegionChange} ) {
             <select value={selectedRegion} onChange={onRegionChange}>
                 <option value="">Världsdel</option>
                 {regions.map((region, index) => (
-                    <option key={index} value={region}>{region}</option>
+                    <option key={index} value={region.english}>{region.swedish}</option>
                 ))}
             </select>
         </div>
